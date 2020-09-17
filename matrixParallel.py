@@ -1,4 +1,5 @@
- 
+#author:Sofia Hernandez
+
 import time
 import pymp
 import numpy as np
@@ -17,7 +18,7 @@ def matrix_multi(a,b):
    # sharedMatrix = pymp.shared.list()
     arr = [[0 for col in range(0,len(b[0]))] for row in range(0, len(a))]
     sharedMatrix = pymp.shared.list()
-    with pymp.Parallel(8) as p:
+    with pymp.Parallel(1) as p:
         print(f'Hello from thread {p.thread_num} of {p.num_threads}')
         for i in p.range(len(a)):
                        for j in range(len(b[0])):
