@@ -13,14 +13,17 @@ def printSubarray( matrix, size = 10):
               print(' ')
 
 def matrix_multi(a,b):
+    result = []
+   # sharedMatrix = pymp.shared.list()
+    arr = [[0 for col in range(0,len(b[0]))] for row in range(0, len(a))]
     sharedMatrix = pymp.shared.list()
-    sharedMatrix = [[0 for col in range(0,len(a))] for row in range(0, len(b[0]))]
     with pymp.Parallel(8) as p:
         print(f'Hello from thread {p.thread_num} of {p.num_threads}')
         for i in p.range(len(a)):
                        for j in range(len(b[0])):
                            for k in range(len(b)):
-                              sharedMatrix[i][j] += a[i][k] * b[k][j]
+                              arr[i][j] += a[i][k] * b[k][j]
+                           sharedMatrix.append(arr)
     return sharedMatrix
 
 
